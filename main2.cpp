@@ -82,11 +82,14 @@ int main(){
 
       for(int i=0;i<mtree.size();i++){
         char* leaf = mtree.tree[i];
-        vector<ProofNode> proof = mtree.proof(leaf);
+        vector<ProofNode> old_proof = mtree.proof(leaf);
 
       //	for(int i = 0 ;i<proof.size();i++){
       //		printf("parent : %s\nleft : %s\nright : %s\n",proof[i].parent,proof[i].right,proof[i].left);
-      //	}
+      //	
+  
+	char *sr = serialize(old_proof);
+	vector<ProofNode> proof = deserialize(sr);
 
         t = clock() - t;
         //printf("[get proof] took %d clocks (%f secs)\n",t,(float)t/CLOCKS_PER_SEC);

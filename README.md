@@ -1,5 +1,5 @@
 ## New Feature
-Push new leaf to merkletree
+Serialize proof to string and deserialize back to vector<ProofNode>
 
 ## Usage
 
@@ -44,7 +44,17 @@ int main(){
 	bool newverified = verifyProof(newleaf,newroot,newproof);
 
 	printf("new ver : %d\n",newverified);
+
+	// serialize and deserialize
+	char *ser_str = serialize(proof);
+	printf("result of serialization : %s\n",ser_str);
+	vector<ProofNode> sdproof = deserialize(ser_str);
+
+	// verify deserialized proof
+	bool dsverified = verifyProof(sample_leaf,root,sdproof);
+	printf("verify d&s proof : %d\n",dsverified);
 }
+
 ```
 ## To-do
 
