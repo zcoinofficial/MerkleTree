@@ -4,6 +4,7 @@
 #include <sstream>
 #include <cstdio>
 #include <openssl/sha.h>
+#include "merkletree.h"
 
 void calSHA256(char* inp,char out_buff[65]){
   unsigned char hash[SHA256_DIGEST_LENGTH];
@@ -74,11 +75,11 @@ int main(int argc,char** argv){
   int c = stoi(argv[1]);
   if(c<0)
     return 1;
-printf("%d\n",c);
-  char  buff[65];
+  printf("%d\n",c);
+  char  buff[33];
   for(int i=0;i<c;i++){
     itos(i,buff);
-    calSHA256(buff,buff);
+    calBlake2(buff,buff);
     printf("%s\n",buff);
   }
 }

@@ -92,6 +92,11 @@ int getRight(const vector<T>& tree,int idx){
   return guardRange<T>(tree,idx,right_idx);
 }
 
+template <typename T>
+int getBro(const vector<T>& tree,int idx){
+  return (idx%2==0)?idx-1:idx+1;
+}
+
 // pass by ref *******************************************************
 template <typename T>
 void climb(vector<T>& tree,int idx,void (*fn)(T&, int)){

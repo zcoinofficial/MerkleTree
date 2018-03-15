@@ -5,17 +5,19 @@ using namespace std;
 int main(){
 
 	// initialize leaves
-	vector<char*> leaves(5);
-	leaves[0] = "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9";
-	leaves[1] = "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b";
-	leaves[2] = "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35";
-	leaves[3] = "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce";
-	leaves[4] = "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a";
+	vector<char*> leaves(4);
+	leaves[0] = "92cdf578c47085a5992256f0dcf97d0b"; // 1
+	leaves[1] = "31237cdb79ae1dfa7ffb87cde7ea8a80"; // 2
+	leaves[2] = "581348337b0f3e148620173daaa5f94d"; // 3
+	leaves[3] = "eb8649214997574e20c464388a172420"; // 4
+    // [[[1]+[2]] + [[3]+[4]]]
+    // [6eb00c878931c099ca1a48951db76505+812f428b2d97039f950d63f1d55e9f4d]
+    // 42c8ed715efc42b251e38ea429322852 // root
 
 	// initialize merkletree
 	merkletree mtree = merkletree(leaves);
-	char* root = mtree.root();
 
+	char* root = mtree.root();
 	// get proof
 	char* sample_leaf = leaves[0];
 	vector<ProofNode> proof = mtree.proof(sample_leaf);
@@ -27,7 +29,7 @@ int main(){
 
 	// Push leaf
 	// This will change value of some nodes
-	char* newleaf = "370b126df07859afa569cd82582bc43dfb2ce3ba8069dbbcbef6b7215b7a76c6"; // sha256 of "anakin"
+	char* newleaf = "70b201352f24bf1c9770b99f8f712018"; // 5
 	mtree.pushleaf(newleaf);
 
 	char* newroot = mtree.root();
